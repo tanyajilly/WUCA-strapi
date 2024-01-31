@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_content_sliders",
+  "info": {
+    "displayName": "PhotoGallery",
+    "icon": "landscape",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "photo": {
+      "displayName": "Photo",
+      "type": "component",
+      "repeatable": true,
+      "component": "data.photo",
+      "required": true
+    },
+    "view": {
+      "type": "enumeration",
+      "enum": [
+        "slider",
+        "tiles"
+      ],
+      "default": "slider"
+    }
+  }
+}

@@ -16,13 +16,25 @@ module.exports = createCoreController('api::article.article', ({ strapi }) => ({
     // thanks to the custom route we have now a slug variable
     // instead of the default id
     const { slug } = ctx.params;
-    const user = ctx.state?.user;
     const populateContent: PopulateTypes = {
-      image: true,
-      author: true,
+      basicArticleData: {
+        populate: {
+          image: true,
+          author: true,
+        },
+      },
+      pageContent: {
+        populate: {
+          image: true,
+          photo: {
+            populate: {
+              image: true
+            }
+          }
+        }
+      },
       categories: true
     }
-    if (user) populateContent.comments = true;
     const entity = await strapi.db.query('api::article.article').findOne({
       where: { slug },
       populate: populateContent
