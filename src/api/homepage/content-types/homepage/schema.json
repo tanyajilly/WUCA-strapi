@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "homepages",
+  "info": {
+    "singularName": "homepage",
+    "pluralName": "homepages",
+    "displayName": "Homepage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "carousel": {
+      "type": "component",
+      "repeatable": false,
+      "component": "content.slider"
+    },
+    "about": {
+      "type": "component",
+      "repeatable": false,
+      "component": "content.text-section"
+    },
+    "fact": {
+      "type": "component",
+      "repeatable": false,
+      "component": "content.text-section"
+    },
+    "warInfo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "content.text-section"
+    }
+  }
+}

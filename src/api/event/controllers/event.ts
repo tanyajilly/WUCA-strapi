@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * article controller
+ * event controller
  */
 
 import { factories } from '@strapi/strapi';
@@ -11,7 +11,7 @@ interface PopulateTypes {
   [key: string]: boolean | PopulateTypes;
 }
 
-module.exports = createCoreController('api::article.article', ({ strapi }) => ({
+module.exports = createCoreController('api::event.event', ({ strapi }) => ({
   // Query by slug
   async findOne(ctx) {
     // thanks to the custom route we have now a slug variable
@@ -37,7 +37,7 @@ module.exports = createCoreController('api::article.article', ({ strapi }) => ({
       },
       categories: true
     }
-    const entity = await strapi.db.query('api::article.article').findOne({
+    const entity = await strapi.db.query('api::event.event').findOne({
       where: { slug },
       populate: populateContent
     });

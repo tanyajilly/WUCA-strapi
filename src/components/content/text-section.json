@@ -8,8 +8,11 @@
   "options": {},
   "attributes": {
     "text": {
-      "type": "blocks",
-      "required": true
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
     },
     "image": {
       "type": "media",

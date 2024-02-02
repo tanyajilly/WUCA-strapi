@@ -24,7 +24,13 @@ export interface ContentTextSection extends Schema.Component {
     description: '';
   };
   attributes: {
-    text: Attribute.Blocks & Attribute.Required;
+    text: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     image: Attribute.Media;
     imagePosition: Attribute.Enumeration<['left', 'right']> &
       Attribute.DefaultTo<'left'>;
@@ -36,12 +42,13 @@ export interface ContentVideo extends Schema.Component {
   info: {
     displayName: 'Video';
     icon: 'play';
+    description: '';
   };
   attributes: {
-    Title: Attribute.String;
-    Description: Attribute.Text;
-    Video: Attribute.Media;
-    YoutubeLink: Attribute.String;
+    title: Attribute.String;
+    description: Attribute.Text;
+    video: Attribute.Media;
+    youTubeLink: Attribute.String;
   };
 }
 
