@@ -35,24 +35,6 @@
       "type": "uid",
       "required": true
     },
-    "startDate": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "datetime",
-      "required": true
-    },
-    "endDate": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "datetime",
-      "required": true
-    },
     "location": {
       "pluginOptions": {
         "i18n": {
@@ -61,6 +43,30 @@
       },
       "type": "string",
       "required": true
+    },
+    "startDate": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "date"
+    },
+    "startTime": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "time"
+    },
+    "endTime": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "time"
     },
     "repeatable": {
       "pluginOptions": {
