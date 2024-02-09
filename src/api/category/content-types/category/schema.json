@@ -25,6 +25,12 @@
       "relation": "manyToMany",
       "target": "api::article.article",
       "mappedBy": "categories"
+    },
+    "facts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::fact.fact",
+      "mappedBy": "categories"
     }
   }
 }

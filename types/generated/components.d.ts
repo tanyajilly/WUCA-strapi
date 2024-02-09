@@ -52,25 +52,6 @@ export interface ContentVideo extends Schema.Component {
   };
 }
 
-export interface DataArticle extends Schema.Component {
-  collectionName: 'components_data_articles';
-  info: {
-    displayName: 'Article';
-    icon: 'calendar';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    image: Attribute.Media;
-    author: Attribute.Relation<
-      'data.article',
-      'oneToOne',
-      'api::author.author'
-    >;
-    description: Attribute.Text;
-  };
-}
-
 export interface DataPhoto extends Schema.Component {
   collectionName: 'components_data_photos';
   info: {
@@ -91,7 +72,6 @@ declare module '@strapi/types' {
       'content.slider': ContentSlider;
       'content.text-section': ContentTextSection;
       'content.video': ContentVideo;
-      'data.article': DataArticle;
       'data.photo': DataPhoto;
     }
   }

@@ -983,7 +983,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   info: {
     singularName: 'article';
     pluralName: 'articles';
-    displayName: 'article';
+    displayName: 'News';
     description: '';
   };
   options: {
@@ -995,13 +995,26 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     };
   };
   attributes: {
-    slug: Attribute.UID & Attribute.Required;
-    categories: Attribute.Relation<
-      'api::article.article',
-      'manyToMany',
-      'api::category.category'
-    >;
-    basicArticleData: Attribute.Component<'data.article'> &
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    image: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    description: Attribute.Text &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1015,6 +1028,16 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    author: Attribute.Relation<
+      'api::article.article',
+      'oneToOne',
+      'api::author.author'
+    >;
+    categories: Attribute.Relation<
+      'api::article.article',
+      'manyToMany',
+      'api::category.category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1087,6 +1110,11 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'manyToMany',
       'api::article.article'
     >;
+    facts: Attribute.Relation<
+      'api::category.category',
+      'manyToMany',
+      'api::fact.fact'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1122,14 +1150,26 @@ export interface ApiEventEvent extends Schema.CollectionType {
     };
   };
   attributes: {
-    basicArticleData: Attribute.Component<'data.article'> &
+    title: Attribute.String &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    slug: Attribute.UID &
-      Attribute.Required &
+    slug: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    image: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    description: Attribute.Text &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1145,19 +1185,19 @@ export interface ApiEventEvent extends Schema.CollectionType {
     startDate: Attribute.Date &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     startTime: Attribute.Time &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     endTime: Attribute.Time &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     repeatable: Attribute.Boolean &
@@ -1199,22 +1239,232 @@ export interface ApiEventEvent extends Schema.CollectionType {
   };
 }
 
-export interface ApiHomepageHomepage extends Schema.SingleType {
-  collectionName: 'homepages';
+export interface ApiFactFact extends Schema.CollectionType {
+  collectionName: 'facts';
   info: {
-    singularName: 'homepage';
-    pluralName: 'homepages';
-    displayName: 'Homepage';
+    singularName: 'fact';
+    pluralName: 'facts';
+    displayName: 'Culture';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    image: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageContent: Attribute.DynamicZone<
+      ['content.text-section', 'content.slider', 'content.video']
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    author: Attribute.Relation<
+      'api::fact.fact',
+      'oneToOne',
+      'api::author.author'
+    >;
+    categories: Attribute.Relation<
+      'api::fact.fact',
+      'manyToMany',
+      'api::category.category'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::fact.fact', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::fact.fact', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::fact.fact',
+      'oneToMany',
+      'api::fact.fact'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiFaqFaq extends Schema.CollectionType {
+  collectionName: 'faqs';
+  info: {
+    singularName: 'faq';
+    pluralName: 'faqs';
+    displayName: 'FAQ';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    carousel: Attribute.Component<'content.slider'>;
-    about: Attribute.Component<'content.text-section'>;
-    fact: Attribute.Component<'content.text-section'>;
-    warInfo: Attribute.Component<'content.text-section'>;
+    question: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    answer: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'blockBalloon';
+        }
+      > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::faq.faq', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::faq.faq', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::faq.faq',
+      'oneToMany',
+      'api::faq.faq'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiHelpHelp extends Schema.CollectionType {
+  collectionName: 'helps';
+  info: {
+    singularName: 'help';
+    pluralName: 'helps';
+    displayName: 'Help';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    info: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    list: Attribute.Relation<'api::help.help', 'oneToMany', 'api::faq.faq'>;
+    moreInfo: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::help.help', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::help.help', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::help.help',
+      'oneToMany',
+      'api::help.help'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiHomepageHomepage extends Schema.SingleType {
+  collectionName: 'homepages';
+  info: {
+    singularName: 'homepage';
+    pluralName: 'homepages';
+    displayName: 'Homepage_EN';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    carousel: Attribute.Component<'content.slider'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    about: Attribute.Component<'content.text-section'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    fact: Attribute.Component<'content.text-section'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    warInfo: Attribute.Component<'content.text-section'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1230,6 +1480,76 @@ export interface ApiHomepageHomepage extends Schema.SingleType {
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::homepage.homepage',
+      'oneToMany',
+      'api::homepage.homepage'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiHomepageUaHomepageUa extends Schema.SingleType {
+  collectionName: 'homepage_uas';
+  info: {
+    singularName: 'homepage-ua';
+    pluralName: 'homepage-uas';
+    displayName: 'Homepage_UA';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    carousel: Attribute.Component<'content.slider'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    about: Attribute.Component<'content.text-section'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    fact: Attribute.Component<'content.text-section'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    warInfo: Attribute.Component<'content.text-section'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::homepage-ua.homepage-ua',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::homepage-ua.homepage-ua',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::homepage-ua.homepage-ua',
+      'oneToMany',
+      'api::homepage-ua.homepage-ua'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -1256,16 +1576,15 @@ export interface ApiPagePage extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    slug: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     pageContent: Attribute.DynamicZone<
       ['content.slider', 'content.text-section', 'content.video']
     > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    slug: Attribute.UID<'api::page.page', 'name'> &
-      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1313,7 +1632,11 @@ declare module '@strapi/types' {
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
       'api::event.event': ApiEventEvent;
+      'api::fact.fact': ApiFactFact;
+      'api::faq.faq': ApiFaqFaq;
+      'api::help.help': ApiHelpHelp;
       'api::homepage.homepage': ApiHomepageHomepage;
+      'api::homepage-ua.homepage-ua': ApiHomepageUaHomepageUa;
       'api::page.page': ApiPagePage;
     }
   }

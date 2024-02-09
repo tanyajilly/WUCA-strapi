@@ -17,13 +17,15 @@ module.exports = createCoreController('api::event.event', ({ strapi }) => ({
     // thanks to the custom route we have now a slug variable
     // instead of the default id
     const { slug } = ctx.params;
+    let { locale } = ctx.query;
+    // Default locale fallback
+    const DEFAULT_LOCALE = "en";
+    if (!locale) {
+      locale = DEFAULT_LOCALE;
+    }
     const populateContent: PopulateTypes = {
-      basicArticleData: {
-        populate: {
-          image: true,
-          author: true,
-        },
-      },
+      image: true,
+      categories: true,
       pageContent: {
         populate: {
           image: true,
@@ -34,13 +36,21 @@ module.exports = createCoreController('api::event.event', ({ strapi }) => ({
             }
           }
         }
-      },
-      categories: true
+      }
     }
-    const entity = await strapi.db.query('api::event.event').findOne({
-      where: { slug },
+    let entity = await strapi.db.query('api::event.event').findOne({
+      where: { slug, locale },
       populate: populateContent
     });
+    if (!entity && locale !== DEFAULT_LOCALE) {
+      entity = await strapi.db.query('api::event.event').findOne({
+        where: { slug, locale: DEFAULT_LOCALE },
+        populate: populateContent
+      });
+    }
+    if (!entity) {
+      return ctx.notFound("Page not found");
+    }
     // const sanitizedEntity = await (this as any).sanitizeOutput(entity, ctx);
 
     // return (this as any).transformResponse(sanitizedEntity);

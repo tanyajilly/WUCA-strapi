@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "articles",
+  "collectionName": "facts",
   "info": {
-    "singularName": "article",
-    "pluralName": "articles",
-    "displayName": "News",
-    "description": ""
+    "singularName": "fact",
+    "pluralName": "facts",
+    "displayName": "Culture"
   },
   "options": {
     "draftAndPublish": true

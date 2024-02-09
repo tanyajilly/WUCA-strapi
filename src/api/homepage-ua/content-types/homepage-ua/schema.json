@@ -1,11 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "homepages",
+  "collectionName": "homepage_uas",
   "info": {
-    "singularName": "homepage",
-    "pluralName": "homepages",
-    "displayName": "Homepage_EN",
-    "description": ""
+    "singularName": "homepage-ua",
+    "pluralName": "homepage-uas",
+    "displayName": "Homepage_UA"
   },
   "options": {
     "draftAndPublish": true

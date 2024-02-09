@@ -16,24 +16,45 @@
     }
   },
   "attributes": {
-    "basicArticleData": {
-      "type": "component",
-      "repeatable": false,
+    "title": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "component": "data.article"
+      "type": "string",
+      "required": true
     },
     "slug": {
       "pluginOptions": {
         "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "regex": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "required": false,
+      "unique": false
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "description": {
+      "pluginOptions": {
+        "i18n": {
           "localized": true
         }
       },
-      "type": "uid",
-      "required": true
+      "type": "text"
     },
     "location": {
       "pluginOptions": {
@@ -47,7 +68,7 @@
     "startDate": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "date"
@@ -55,7 +76,7 @@
     "startTime": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "time"
@@ -63,7 +84,7 @@
     "endTime": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "time"
