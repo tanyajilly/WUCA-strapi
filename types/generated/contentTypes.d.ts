@@ -1183,6 +1183,7 @@ export interface ApiEventEvent extends Schema.CollectionType {
         };
       }>;
     startDate: Attribute.Date &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
@@ -1200,7 +1201,7 @@ export interface ApiEventEvent extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    repeatable: Attribute.Boolean &
+    isRepeatable: Attribute.Boolean &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
@@ -1210,6 +1211,41 @@ export interface ApiEventEvent extends Schema.CollectionType {
     pageContent: Attribute.DynamicZone<
       ['content.slider', 'content.text-section', 'content.video']
     > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    repeatFrequency: Attribute.Enumeration<['weekly', 'biweekly']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    dayOfWeek: Attribute.Enumeration<
+      [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday'
+      ]
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    status: Attribute.Enumeration<['active', 'canceled', 'postponed']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<'active'>;
+    endDate: Attribute.Date &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

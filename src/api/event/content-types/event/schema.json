@@ -37,11 +37,12 @@
       "unique": false
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -71,7 +72,8 @@
           "localized": false
         }
       },
-      "type": "date"
+      "type": "date",
+      "required": true
     },
     "startTime": {
       "pluginOptions": {
@@ -89,7 +91,7 @@
       },
       "type": "time"
     },
-    "repeatable": {
+    "isRepeatable": {
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -111,6 +113,57 @@
         "content.text-section",
         "content.video"
       ]
+    },
+    "repeatFrequency": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "weekly",
+        "biweekly"
+      ]
+    },
+    "dayOfWeek": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ]
+    },
+    "status": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "active",
+        "canceled",
+        "postponed"
+      ],
+      "default": "active"
+    },
+    "endDate": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "date"
     }
   }
 }
