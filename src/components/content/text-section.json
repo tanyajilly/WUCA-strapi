@@ -29,6 +29,11 @@
         "right"
       ],
       "default": "left"
+    },
+    "Button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "data.button"
     }
   }
 }

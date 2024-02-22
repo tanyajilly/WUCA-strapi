@@ -45,7 +45,8 @@
       "components": [
         "content.slider",
         "content.text-section",
-        "content.video"
+        "content.video",
+        "content.donate-button"
       ]
     }
   }

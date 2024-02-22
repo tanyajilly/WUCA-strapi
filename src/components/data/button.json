@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_data_buttons",
+  "info": {
+    "displayName": "ButtonEl",
+    "icon": "cursor",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "buttonText": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "className": {
+      "type": "string"
+    }
+  }
+}

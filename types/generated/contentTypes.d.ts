@@ -1619,7 +1619,12 @@ export interface ApiPagePage extends Schema.CollectionType {
         };
       }>;
     pageContent: Attribute.DynamicZone<
-      ['content.slider', 'content.text-section', 'content.video']
+      [
+        'content.slider',
+        'content.text-section',
+        'content.video',
+        'content.donate-button'
+      ]
     > &
       Attribute.SetPluginOptions<{
         i18n: {

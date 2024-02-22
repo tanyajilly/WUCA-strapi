@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_content_donate_buttons",
+  "info": {
+    "displayName": "DonateButton",
+    "icon": "gift"
+  },
+  "options": {},
+  "attributes": {
+    "buttonText": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

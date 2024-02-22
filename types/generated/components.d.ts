@@ -1,5 +1,16 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface ContentDonateButton extends Schema.Component {
+  collectionName: 'components_content_donate_buttons';
+  info: {
+    displayName: 'DonateButton';
+    icon: 'gift';
+  };
+  attributes: {
+    buttonText: Attribute.String & Attribute.Required;
+  };
+}
+
 export interface ContentSlider extends Schema.Component {
   collectionName: 'components_content_sliders';
   info: {
@@ -34,6 +45,7 @@ export interface ContentTextSection extends Schema.Component {
     image: Attribute.Media;
     imagePosition: Attribute.Enumeration<['left', 'right']> &
       Attribute.DefaultTo<'left'>;
+    Button: Attribute.Component<'data.button'>;
   };
 }
 
@@ -49,6 +61,20 @@ export interface ContentVideo extends Schema.Component {
     description: Attribute.Text;
     video: Attribute.Media;
     youTubeLink: Attribute.String;
+  };
+}
+
+export interface DataButton extends Schema.Component {
+  collectionName: 'components_data_buttons';
+  info: {
+    displayName: 'ButtonEl';
+    icon: 'cursor';
+    description: '';
+  };
+  attributes: {
+    buttonText: Attribute.String & Attribute.Required;
+    url: Attribute.String & Attribute.Required;
+    className: Attribute.String;
   };
 }
 
@@ -69,9 +95,11 @@ export interface DataPhoto extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'content.donate-button': ContentDonateButton;
       'content.slider': ContentSlider;
       'content.text-section': ContentTextSection;
       'content.video': ContentVideo;
+      'data.button': DataButton;
       'data.photo': DataPhoto;
     }
   }
