@@ -1,15 +1,18 @@
 {
   "name": "wuca-strapi",
-  "private": true,
   "version": "0.1.0",
+  "private": true,
   "description": "A Strapi application",
+  "license": "MIT",
+  "author": {
+    "name": "A Strapi developer"
+  },
   "scripts": {
+    "build": "strapi build",
     "develop": "strapi develop",
     "start": "strapi start",
-    "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^2.1.0",
     "@strapi/plugin-cloud": "4.17.0",
@@ -27,15 +30,12 @@
     "strapi-plugin-navigation": "^2.3.2",
     "styled-components": "5.3.3"
   },
-  "author": {
-    "name": "A Strapi developer"
+  "devDependencies": {},
+  "engines": {
+    "node": "20.9.0",
+    "npm": ">=6.0.0"
   },
   "strapi": {
     "uuid": "2211d11e-cd37-481d-af2a-15e5a26437dc"
-  },
-  "engines": {
-    "node": ">=20.x.x",
-    "npm": ">=6.0.0"
-  },
-  "license": "MIT"
+  }
 }
