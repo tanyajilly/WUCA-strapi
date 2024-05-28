@@ -37,9 +37,7 @@
       "unique": false
     },
     "image": {
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "type": "media",
       "multiple": false,
       "pluginOptions": {
@@ -63,11 +61,7 @@
         }
       },
       "type": "dynamiczone",
-      "components": [
-        "content.text-section",
-        "content.slider",
-        "content.video"
-      ]
+      "components": ["content.text-section", "content.slider", "content.video"]
     },
     "author": {
       "type": "relation",
@@ -78,7 +72,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::category.category",
-      "inversedBy": "articles"
+      "mappedBy": "articles"
     }
   }
 }
