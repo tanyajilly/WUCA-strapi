@@ -15,12 +15,12 @@
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^2.1.0",
-    "@strapi/plugin-cloud": "4.17.0",
-    "@strapi/plugin-i18n": "4.17.0",
-    "@strapi/plugin-users-permissions": "4.17.0",
-    "@strapi/provider-upload-cloudinary": "^4.17.1",
-    "@strapi/strapi": "4.17.0",
-    "better-sqlite3": "8.6.0",
+    "@strapi/plugin-cloud": "4.24.3",
+    "@strapi/plugin-i18n": "4.24.3",
+    "@strapi/plugin-users-permissions": "4.24.3",
+    "@strapi/provider-upload-cloudinary": "^4.24.3",
+    "@strapi/strapi": "4.24.3",
+    "better-sqlite3": "10.0.0",
     "pg": "^8.11.3",
     "pg-connection-string": "^2.6.2",
     "react": "^18.0.0",
@@ -32,7 +32,7 @@
   },
   "devDependencies": {},
   "engines": {
-    "node": "20.9.0",
+    "node": ">=18.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
   "strapi": {
